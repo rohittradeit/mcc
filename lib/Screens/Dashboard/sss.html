@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Page Title</title>
+
+
+</head>
+<body>
+	<select class="form-select" id="country" onchange=selectState(this.value)></select>
+	<select class="form-select" id="state" onchange=selectCity(this.value)></select>
+	<select class="form-select" id="city" ></select>
+	
+<script>
+let myCountry = [
+    {
+        id:'1',
+        name:"India",
+        state:[
+				{id:"1", name:"Punjab", city:["Ludhiyana", "Mohali", "Zirakpur"]},
+				{id:"2", name:"Haryana", city:["Sonipat", "Panipat", "Karnal"]},
+				{id:"3", name:"Himachal", city:["Shimla", "Manali", "Kullu"]}
+			]
+	},
+    {
+        id:'2',
+        name:"USA",
+        state:[
+				{id:"1", name:"New Jersey", city:["Atlantic City", "Elizabeth", "Jersey City"]},
+				{id:"2", name:"New York", city:["Bedford", "Hudson", "New York City"]},
+				{id:"3", name:"California", city:["Hollywood", "Oakland", "Los Angeles"]}
+			]
+	},
+    {
+        id:'3', 
+        name:"Australia",
+        state:[
+				{id:"1", name:"Victoria", city:["Melbourne", "Hobart", "Perth"]},
+				{id:"2", name:"New South Wales", city:["Sydney", "Adelaide", "Canberra"]},
+				{id:"3", name:"Queensland", city:["Brisbane", "Hobart"]}
+			]
+	}
+]
+
+
+
+
+var mycoun="<option>select Country</option>";
+
+for(let i=0; i<myCountry.length; i++){
+	mycoun +='<option value="'+ myCountry[i].id +'">' + myCountry[i].name + '</option>'
+}
+document.getElementById("country").innerHTML = mycoun;
+
+function selectState(val){
+	
+	var mystate="<option>select State</option>";
+	
+	for(let i=0; i<myCountry.length; i++)
+	{
+		if(val=== myCountry[i].id)
+		{
+			for(let j=0; j<myCountry[i].state.length; j++)
+			{
+				mystate +='<option value="'+myCountry[i].state[j].name +'">' + myCountry[i].state[j].name + '</option>'
+			}
+		}
+	}
+	document.getElementById('state').innerHTML = mystate;
+}
+
+
+function  selectCity(val)
+	{
+	
+	city='<option>select  city</option>'
+	
+	for(let i=0;i<myCountry.length;i++)
+	{
+	
+	
+	 for(j=0;j<myCountry[i].state.length;j++)
+	 {
+	   alert("city"+myCountry[i].state[j].name)
+	    if(val == myCountry[i].state[j].name)
+		{
+		   for(k=0;k<myCountry[i].state.length;k++)
+		   {
+		    city +='<option>'+myCountry[i].state[j].city[k]+'</option>'
+		   
+		   
+		   }
+		
+		
+		
+		
+		}
+	 
+	 
+	 
+	 }
+	 
+	 }
+	
+	document.getElementById('city').innerHTML=city
+	}
+
+	</script>
+</body>
+</html>

@@ -1,0 +1,165 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_auth/constants.dart';
+import 'package:flutter_auth/responsive.dart';
+import '../../components/background.dart';
+import 'components/sign_up_top_image.dart';
+import 'components/dashmain.dart';
+import 'listloundry.dart';
+import 'third.dart';
+import 'second.dart';
+import 'forth.dart';
+
+
+
+
+// Define a data class for the image data
+class ImageData {
+  final String imagePath;
+  final String name;
+  final String description;
+
+  ImageData({
+    required this.imagePath,
+    required this.name,
+    required this.description,
+  });
+}
+
+class FirstScreen extends StatelessWidget {
+  const FirstScreen({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+
+ 
+
+    return Scaffold(
+	 resizeToAvoidBottomInset: false,
+	   appBar: AppBar(
+        
+        backgroundColor: Colors.white,
+      ),
+    body: MyHomePage(),
+bottomNavigationBar: BottomAppBar(
+    child: Row(
+      children: [
+        IconButton(icon: Icon(Icons.menu), onPressed: () {}),
+		Spacer(),
+		 IconButton(icon: Icon(Icons.home), onPressed: () {}),
+		 Spacer(),
+		  IconButton(icon: Icon(Icons.mail), onPressed: () {}),
+        Spacer(),
+        IconButton(icon: Icon(Icons.search), onPressed: () {}),
+        IconButton(icon: Icon(Icons.more_vert), onPressed: () {}),
+      ],
+    ),
+  )
+	
+			  
+
+    );
+  
+  
+  }
+  }
+
+class MyHomePage extends StatelessWidget {
+
+
+
+List service=[
+
+			"Home Services",
+			"Laundary Services",
+			"Office Cealing",
+			"Car washing",
+			"Car stations",
+			
+
+
+     ]; 
+
+   List myscreen=[
+     Third(),
+	 Second(),
+	 Forth(),
+	 ListLoundry(),
+	 ListLoundry()
+   
+   
+   ];
+	 
+  List a = [
+    "https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885_960_720.jpg",
+    "https://cdn.pixabay.com/photo/2016/05/05/02/37/sunset-1373171_960_720.jpg",
+    "https://cdn.pixabay.com/photo/2017/02/01/22/02/mountain-landscape-2031539_960_720.jpg",
+    "https://cdn.pixabay.com/photo/2014/09/14/18/04/dandelion-445228_960_720.jpg",
+    "https://cdn.pixabay.com/photo/2016/08/09/21/54/yellowstone-national-park-1581879_960_720.jpg",
+    
+    
+  ];
+  
+   void incrementCounter(int i) {
+    print(i);
+	
+	
+  }
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+     
+      body: ListView.builder(
+        itemBuilder: (BuildContext ctx, int index) {
+		
+          return Padding(
+            padding: EdgeInsets.all(20),
+            child: Card(
+              shape:Border.all(width: 5, ),
+              elevation: 20,
+              color: Colors.black,
+              child: Column(
+                children: <Widget>[
+				       Text(
+          service[index],
+          style: TextStyle(
+            fontSize: 36.0,
+			color:Colors.white,
+            fontWeight: FontWeight.w700,
+			fontStyle: FontStyle.italic,
+			
+          ),
+        ),
+                  Image.network(a[index]),
+                  SizedBox(height: 10,),  
+         ElevatedButton(
+                              child: Text(
+                               "Book",
+                                textAlign: TextAlign.center,
+                                maxLines: 2,
+                                style: TextStyle(
+                                  
+                                ),
+                              ),
+                              style: ElevatedButton.styleFrom(
+                                minimumSize: Size(20, 35),
+                                primary: Colors.green[900],
+                                onPrimary: Colors.white,
+                              ),
+                             
+                                   onPressed: () {
+								   //incrementCounter(index);
+								    Navigator.of(context)
+            .push(MaterialPageRoute(builder: (context) =>  myscreen[index]));
+								   
+								   })
+                           
+                ],
+              ),
+            ),
+          );
+        },
+        itemCount: a.length,
+      ),
+    );
+  }
+}
